@@ -756,16 +756,16 @@
             
             // Create form data for Formspree
             var formData = new FormData();
-            formData.append('first_name', leadData.first_name);
-            formData.append('last_name', leadData.last_name);
+            formData.append('first-name', leadData.first_name);
+            formData.append('last-name', leadData.last_name);
+            formData.append('practice-name', leadData.business_type);
             formData.append('email', leadData.email);
-            formData.append('business_type', leadData.business_type);
-            formData.append('stress_level', stressLevel);
+            formData.append('phone', 'Not provided');
+            formData.append('practice-type', 'Entrepreneur Stress Test');
             formData.append('score', totalScore + '/40');
-            formData.append('top_stressors', topStressors.join(', ') || 'None identified');
-            formData.append('detailed_answers', answerText);
-            formData.append('completed_date', new Date().toLocaleString());
-            formData.append('assessment_type', 'Entrepreneur Stress Test');
+            formData.append('priority-level', stressLevel);
+            formData.append('detailed-answers', answerText);
+            formData.append('completed-date', new Date().toLocaleString());
             
             // Log what we're sending
             console.log('📋 Form data being sent:', {
