@@ -32,6 +32,7 @@
             color: white;
             padding: 40px;
             text-align: center;
+            position: relative;
         }
         
         .logo-section {
@@ -43,34 +44,51 @@
         }
         
         .logo-placeholder {
-            width: 64px;
-            height: 64px;
+            width: 80px;
+            height: 80px;
             background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
-            border-radius: 12px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
             font-size: 1.2em;
+            border: 3px solid white;
         }
         
-        .company-info h1 {
-            font-size: 2.5em;
-            margin-bottom: 5px;
+        .company-info {
+            text-align: left;
+        }
+        
+        .company-name {
+            font-size: 1.8em;
             font-weight: bold;
+            color: white;
+            margin-bottom: 5px;
         }
         
         .company-tagline {
-            font-size: 0.9em;
+            font-size: 1em;
             color: #10B981;
-            font-weight: 600;
+            font-style: italic;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: bold;
         }
         
         .header p {
             font-size: 1.2em;
-            margin-top: 15px;
             opacity: 0.9;
+        }
+        
+        .trademark {
+            font-size: 0.9em;
+            margin-top: 15px;
+            opacity: 0.8;
         }
         
         .content {
@@ -110,7 +128,7 @@
         .option {
             padding: 15px 20px;
             background: white;
-            border: 2px solid #e5e7eb;
+            border: 2px solid #e9ecef;
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -131,7 +149,7 @@
         
         .progress {
             height: 8px;
-            background: #e5e7eb;
+            background: #e9ecef;
             border-radius: 10px;
             margin: 30px 0;
             overflow: hidden;
@@ -172,12 +190,12 @@
         }
         
         .btn-secondary {
-            background: #6b7280;
+            background: #6c757d;
             color: white;
         }
         
         .btn-secondary:hover {
-            background: #4b5563;
+            background: #5a6268;
         }
         
         .btn:disabled {
@@ -188,42 +206,6 @@
         
         .btn:disabled:hover {
             transform: none;
-        }
-        
-        .lead-capture {
-            text-align: center;
-        }
-        
-        .lead-capture h2 {
-            color: #1E40AF;
-            margin-bottom: 30px;
-            font-size: 2em;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #374151;
-        }
-        
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e5e7eb;
-            border-radius: 10px;
-            font-size: 1.1em;
-            transition: border-color 0.3s ease;
-        }
-        
-        .form-group input:focus, .form-group select:focus {
-            outline: none;
-            border-color: #3B82F6;
         }
         
         .results {
@@ -249,30 +231,9 @@
             margin: 0 auto 30px;
         }
         
-        .score-high { background: #dc2626; }
-        .score-medium { background: #d97706; }
-        .score-low { background: #059669; }
-        
-        .contact-info {
-            background: #fef3c7;
-            border: 2px solid #f59e0b;
-            border-radius: 15px;
-            padding: 20px;
-            margin: 20px 0;
-            text-align: left;
-        }
-        
-        .contact-info h3 {
-            color: #92400e;
-            margin-bottom: 15px;
-        }
-        
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-            font-size: 0.9em;
-        }
+        .score-high { background: #dc3545; }
+        .score-medium { background: #ffc107; color: #333; }
+        .score-low { background: #28a745; }
         
         .cta {
             background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
@@ -293,16 +254,102 @@
         }
         
         .author-credit {
-            background: #f8fafc;
+            background: #f8f9fa;
             padding: 20px;
             text-align: center;
-            border-top: 1px solid #e5e7eb;
+            border-top: 1px solid #e9ecef;
             font-style: italic;
-            color: #6b7280;
+            color: #6c757d;
         }
         
-        .hidden {
-            display: none !important;
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1.1em;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #3B82F6;
+        }
+        
+        .lead-capture h2 {
+            text-align: center;
+            color: #1E40AF;
+            margin-bottom: 30px;
+        }
+        
+        .lead-capture p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        
+        .capture-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .form-submit {
+            width: 100%;
+            padding: 18px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 10px;
+        }
+        
+        .disclaimer {
+            text-align: center;
+            font-size: 0.9em;
+            color: #6c757d;
+            margin-top: 15px;
+        }
+        
+        .contact-info {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            text-align: left;
+        }
+        
+        .contact-info h3 {
+            color: #1E40AF;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 8px;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            color: #3B82F6;
+        }
+
+        .loading .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3B82F6;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -312,186 +359,177 @@
             <div class="logo-section">
                 <div class="logo-placeholder">ELL</div>
                 <div class="company-info">
-                    <h1>Entrepreneur Stress Test</h1>
-                    <div class="company-tagline">Elite Local Listings</div>
+                    <div class="company-name">Entrepreneur Stress Test</div>
+                    <div class="company-tagline">ELITE LOCAL LISTINGS</div>
                 </div>
             </div>
-            <p>Discover your stress triggers and get personalized motivational strategies</p>
+            <h1>Entrepreneur Stress Assessment</h1>
+            <p>Discover Your Stress Triggers & Get Daily Motivational Support</p>
+            <div class="trademark">"Helping entrepreneurs thrive under pressure"™</div>
         </div>
         
         <div class="content">
             <!-- Lead Capture Form -->
             <div class="lead-capture" id="leadCapture">
                 <h2>Get Your FREE Stress Relief Plan</h2>
-                <p style="margin-bottom: 30px; color: #6b7280;">Enter your information to receive personalized results + Daily Mind Boost emails</p>
-                
-                <form id="captureForm" style="max-width: 500px; margin: 0 auto;" onsubmit="return startAssessment(event)">
+                <p>
+                    <strong>Enter your information below to start your personalized assessment.</strong><br>
+                    This takes just 3 minutes and shows your stress triggers + gives you daily motivational support.
+                </p>
+                <div class="capture-form">
                     <div class="form-group">
-                        <label>First Name *</label>
-                        <input type="text" id="firstName" name="first_name" placeholder="Enter your first name" required>
+                        <input type="text" id="firstName" placeholder="First Name*" required class="form-control">
                     </div>
                     <div class="form-group">
-                        <label>Last Name *</label>
-                        <input type="text" id="lastName" name="last_name" placeholder="Enter your last name" required>
+                        <input type="text" id="lastName" placeholder="Last Name*" required class="form-control">
                     </div>
                     <div class="form-group">
-                        <label>Email Address *</label>
-                        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                        <input type="email" id="email" placeholder="Email Address*" required class="form-control">
                     </div>
                     <div class="form-group">
-                        <label>Business Type (Optional)</label>
-                        <input type="text" id="businessType" name="business_type" placeholder="e.g., Consulting, E-commerce, Agency">
+                        <input type="text" id="businessType" placeholder="Business Type (Optional)" class="form-control">
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 18px; font-size: 1.2em;">
+                    <button type="button" class="btn btn-primary form-submit" id="startBtn">
                         💪 Start My FREE Stress Test →
                     </button>
-                    <p style="font-size: 0.9em; color: #6b7280; margin-top: 15px;">
-                        Join 1,000+ entrepreneurs • Contact: 1-888-884-0368
+                    <p class="disclaimer">
+                        Join 1,000+ entrepreneurs • Your information is secure and will never be shared.
                     </p>
-                </form>
+                </div>
             </div>
 
-            <!-- Assessment Questions -->
-            <div class="assessment-questions hidden" id="assessmentQuestions">
+            <div class="assessment-questions" id="assessmentQuestions" style="display: none;">
                 <div class="progress">
-                    <div class="progress-bar" id="progressBar"></div>
+                    <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
                 </div>
                 
                 <!-- Question 1 -->
                 <div class="question active" data-question="1">
                     <h3>How many hours per week do you work?</h3>
-                    <p style="color: #6b7280; margin-bottom: 20px;">Include all business-related activities</p>
                     <div class="options">
-                        <div class="option" onclick="selectOption(this, 1, 1)">Under 40 hours (Part-time focus)</div>
-                        <div class="option" onclick="selectOption(this, 1, 2)">40-50 hours (Balanced approach)</div>
-                        <div class="option" onclick="selectOption(this, 1, 3)">50-65 hours (High commitment)</div>
-                        <div class="option" onclick="selectOption(this, 1, 4)">65-80 hours (Intense schedule)</div>
-                        <div class="option" onclick="selectOption(this, 1, 5)">80+ hours (Always working)</div>
+                        <div class="option" data-value="1">Under 40 hours (Part-time focus - 1 point)</div>
+                        <div class="option" data-value="2">40-50 hours (Balanced approach - 2 points)</div>
+                        <div class="option" data-value="3">50-65 hours (High commitment - 3 points)</div>
+                        <div class="option" data-value="4">65-80 hours (Intense schedule - 4 points)</div>
+                        <div class="option" data-value="5">80+ hours (Always working - 5 points)</div>
                     </div>
                 </div>
                 
                 <!-- Question 2 -->
                 <div class="question" data-question="2">
                     <h3>How often does business stress affect your sleep?</h3>
-                    <p style="color: #6b7280; margin-bottom: 20px;">Worrying about business keeps you awake</p>
                     <div class="options">
-                        <div class="option" onclick="selectOption(this, 2, 1)">Never - I sleep soundly</div>
-                        <div class="option" onclick="selectOption(this, 2, 2)">Rarely - Only during major issues</div>
-                        <div class="option" onclick="selectOption(this, 2, 3)">Sometimes - 2-3 times per month</div>
-                        <div class="option" onclick="selectOption(this, 2, 4)">Often - Multiple times per week</div>
-                        <div class="option" onclick="selectOption(this, 2, 5)">Constantly - Almost every night</div>
+                        <div class="option" data-value="1">Never - I sleep soundly (1 point)</div>
+                        <div class="option" data-value="2">Rarely - Only during major issues (2 points)</div>
+                        <div class="option" data-value="3">Sometimes - 2-3 times per month (3 points)</div>
+                        <div class="option" data-value="4">Often - Multiple times per week (4 points)</div>
+                        <div class="option" data-value="5">Constantly - Almost every night (5 points)</div>
                     </div>
                 </div>
                 
                 <!-- Question 3 -->
                 <div class="question" data-question="3">
                     <h3>How often do you worry about cash flow?</h3>
-                    <p style="color: #6b7280; margin-bottom: 20px;">Stress about making payroll, paying bills, having enough money</p>
                     <div class="options">
-                        <div class="option" onclick="selectOption(this, 3, 1)">Never - Cash flow is predictable</div>
-                        <div class="option" onclick="selectOption(this, 3, 2)">Rarely - Only during slow periods</div>
-                        <div class="option" onclick="selectOption(this, 3, 3)">Monthly - At bill-paying time</div>
-                        <div class="option" onclick="selectOption(this, 3, 4)">Weekly - Constantly monitoring</div>
-                        <div class="option" onclick="selectOption(this, 3, 5)">Daily - Always on my mind</div>
+                        <div class="option" data-value="1">Never - Cash flow is predictable (1 point)</div>
+                        <div class="option" data-value="2">Rarely - Only during slow periods (2 points)</div>
+                        <div class="option" data-value="3">Monthly - At bill-paying time (3 points)</div>
+                        <div class="option" data-value="4">Weekly - Constantly monitoring (4 points)</div>
+                        <div class="option" data-value="5">Daily - Always on my mind (5 points)</div>
                     </div>
                 </div>
                 
                 <!-- Question 4 -->
                 <div class="question" data-question="4">
                     <h3>What is your stress level around managing people?</h3>
-                    <p style="color: #6b7280; margin-bottom: 20px;">Hiring, firing, performance issues, team conflicts</p>
                     <div class="options">
-                        <div class="option" onclick="selectOption(this, 4, 1)">No stress - Great team/no employees</div>
-                        <div class="option" onclick="selectOption(this, 4, 2)">Low stress - Minor issues only</div>
-                        <div class="option" onclick="selectOption(this, 4, 3)">Moderate stress - Regular challenges</div>
-                        <div class="option" onclick="selectOption(this, 4, 4)">High stress - Frequent problems</div>
-                        <div class="option" onclick="selectOption(this, 4, 5)">Extreme stress - Constant people drama</div>
+                        <div class="option" data-value="1">No stress - Great team/no employees (1 point)</div>
+                        <div class="option" data-value="2">Low stress - Minor issues only (2 points)</div>
+                        <div class="option" data-value="3">Moderate stress - Regular challenges (3 points)</div>
+                        <div class="option" data-value="4">High stress - Frequent problems (4 points)</div>
+                        <div class="option" data-value="5">Extreme stress - Constant people drama (5 points)</div>
                     </div>
                 </div>
                 
                 <!-- Question 5 -->
                 <div class="question" data-question="5">
                     <h3>How anxious are you about generating new business?</h3>
-                    <p style="color: #6b7280; margin-bottom: 20px;">Finding customers, marketing effectiveness, sales pipeline</p>
                     <div class="options">
-                        <div class="option" onclick="selectOption(this, 5, 1)">Not anxious - Leads flow consistently</div>
-                        <div class="option" onclick="selectOption(this, 5, 2)">Slightly anxious - Occasional concerns</div>
-                        <div class="option" onclick="selectOption(this, 5, 3)">Moderately anxious - Regular worry</div>
-                        <div class="option" onclick="selectOption(this, 5, 4)">Very anxious - Frequent panic</div>
-                        <div class="option" onclick="selectOption(this, 5, 5)">Extremely anxious - Keeps me up at night</div>
+                        <div class="option" data-value="1">Not anxious - Leads flow consistently (1 point)</div>
+                        <div class="option" data-value="2">Slightly anxious - Occasional concerns (2 points)</div>
+                        <div class="option" data-value="3">Moderately anxious - Regular worry (3 points)</div>
+                        <div class="option" data-value="4">Very anxious - Frequent panic (4 points)</div>
+                        <div class="option" data-value="5">Extremely anxious - Keeps me up at night (5 points)</div>
                     </div>
                 </div>
                 
                 <!-- Question 6 -->
                 <div class="question" data-question="6">
                     <h3>How stressed are you about access to working capital?</h3>
-                    <p style="color: #6b7280; margin-bottom: 20px;">Business loans, credit lines, investment capital, growth funding</p>
                     <div class="options">
-                        <div class="option" onclick="selectOption(this, 6, 1)">Not stressed - Good access to capital</div>
-                        <div class="option" onclick="selectOption(this, 6, 2)">Slightly stressed - Minor concerns</div>
-                        <div class="option" onclick="selectOption(this, 6, 3)">Moderately stressed - Regular worry</div>
-                        <div class="option" onclick="selectOption(this, 6, 4)">Very stressed - Major concern</div>
-                        <div class="option" onclick="selectOption(this, 6, 5)">Extremely stressed - Desperate for funding</div>
+                        <div class="option" data-value="1">Not stressed - Good access to capital (1 point)</div>
+                        <div class="option" data-value="2">Slightly stressed - Minor concerns (2 points)</div>
+                        <div class="option" data-value="3">Moderately stressed - Regular worry (3 points)</div>
+                        <div class="option" data-value="4">Very stressed - Major concern (4 points)</div>
+                        <div class="option" data-value="5">Extremely stressed - Desperate for funding (5 points)</div>
                     </div>
                 </div>
                 
                 <!-- Question 7 -->
                 <div class="question" data-question="7">
                     <h3>How overwhelmed do you feel by technology demands?</h3>
-                    <p style="color: #6b7280; margin-bottom: 20px;">Software, systems, automation, staying current with tech</p>
                     <div class="options">
-                        <div class="option" onclick="selectOption(this, 7, 1)">Not overwhelmed - Tech savvy</div>
-                        <div class="option" onclick="selectOption(this, 7, 2)">Slightly overwhelmed - Minor struggles</div>
-                        <div class="option" onclick="selectOption(this, 7, 3)">Moderately overwhelmed - Regular challenges</div>
-                        <div class="option" onclick="selectOption(this, 7, 4)">Very overwhelmed - Major struggle</div>
-                        <div class="option" onclick="selectOption(this, 7, 5)">Extremely overwhelmed - Completely lost</div>
+                        <div class="option" data-value="1">Not overwhelmed - Tech savvy (1 point)</div>
+                        <div class="option" data-value="2">Slightly overwhelmed - Minor struggles (2 points)</div>
+                        <div class="option" data-value="3">Moderately overwhelmed - Regular challenges (3 points)</div>
+                        <div class="option" data-value="4">Very overwhelmed - Major struggle (4 points)</div>
+                        <div class="option" data-value="5">Extremely overwhelmed - Completely lost (5 points)</div>
                     </div>
                 </div>
                 
                 <!-- Question 8 -->
                 <div class="question" data-question="8">
                     <h3>How close to burnout do you feel right now?</h3>
-                    <p style="color: #6b7280; margin-bottom: 20px;">Physical exhaustion, emotional drain, loss of motivation</p>
                     <div class="options">
-                        <div class="option" onclick="selectOption(this, 8, 1)">Energized - Love what I do</div>
-                        <div class="option" onclick="selectOption(this, 8, 2)">Tired but motivated</div>
-                        <div class="option" onclick="selectOption(this, 8, 3)">Moderately drained</div>
-                        <div class="option" onclick="selectOption(this, 8, 4)">Significantly burned out</div>
-                        <div class="option" onclick="selectOption(this, 8, 5)">Completely exhausted</div>
+                        <div class="option" data-value="1">Energized - Love what I do (1 point)</div>
+                        <div class="option" data-value="2">Tired but motivated (2 points)</div>
+                        <div class="option" data-value="3">Moderately drained (3 points)</div>
+                        <div class="option" data-value="4">Significantly burned out (4 points)</div>
+                        <div class="option" data-value="5">Completely exhausted (5 points)</div>
                     </div>
                 </div>
                 
                 <div class="navigation">
-                    <button class="btn btn-secondary" id="prevBtn" onclick="changeQuestion(-1)" disabled>Previous</button>
-                    <button class="btn btn-primary" id="nextBtn" onclick="changeQuestion(1)" disabled>Next</button>
+                    <button class="btn btn-secondary" id="prevBtn" disabled>Previous</button>
+                    <button class="btn btn-primary" id="nextBtn" disabled>Next</button>
                 </div>
             </div>
         </div>
         
-        <!-- Results -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Calculating your stress assessment results...</p>
+        </div>
+        
         <div class="results" id="results">
-            <!-- Contact Info Display for Manual Follow-up -->
-            <div class="contact-info" id="contactInfoDisplay" style="display: none;">
-                <h3>📋 Lead Information (For Follow-up):</h3>
-                <div class="contact-grid">
-                    <div><strong>Name:</strong> <span id="displayName"></span></div>
-                    <div><strong>Email:</strong> <span id="displayEmail"></span></div>
-                    <div><strong>Business:</strong> <span id="displayBusiness"></span></div>
-                    <div><strong>Stress Level:</strong> <span id="displayStressLevel"></span></div>
-                    <div><strong>Score:</strong> <span id="displayScore"></span></div>
-                    <div><strong>Date:</strong> <span id="displayDate"></span></div>
-                </div>
-                <div style="margin-top: 15px; font-size: 0.9em;">
-                    <strong>Top Stressors:</strong> <span id="displayStressors"></span>
-                </div>
-            </div>
-            
             <div class="score-circle" id="scoreCircle">
                 <span id="scoreText"></span>
             </div>
             <h2 id="resultTitle"></h2>
             <p id="resultDescription"></p>
-            <button class="cta" onclick="showCTA()">📧 Start My Daily Mind Boost Emails (FREE)</button>
+            
+            <!-- Contact Info Display -->
+            <div class="contact-info" id="contactInfo">
+                <h3>📋 Your Assessment Details:</h3>
+                <p><strong>Name:</strong> <span id="displayName"></span></p>
+                <p><strong>Email:</strong> <span id="displayEmail"></span></p>
+                <p><strong>Business Type:</strong> <span id="displayBusiness"></span></p>
+                <p><strong>Stress Level:</strong> <span id="displayStressLevel"></span></p>
+                <p><strong>Score:</strong> <span id="displayScore"></span></p>
+                <p><strong>Top Stressors:</strong> <span id="displayStressors"></span></p>
+            </div>
+            
+            <button class="cta" id="finalBtn">📧 Start My Daily Mind Boost Emails (FREE)</button>
         </div>
         
         <div class="author-credit">
@@ -500,10 +538,89 @@
     </div>
 
     <script>
+        console.log('✅ STRESS TEST VERSION LOADED');
+        
+        // Global variables
         var currentQuestion = 1;
         var totalQuestions = 8;
         var answers = {};
         var leadData = {};
+        
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('✅ Page loaded, setting up event listeners');
+            
+            document.getElementById('startBtn').addEventListener('click', startAssessment);
+            
+            var options = document.querySelectorAll('.option');
+            options.forEach(function(option) {
+                option.addEventListener('click', function() {
+                    var questionNum = parseInt(this.closest('.question').getAttribute('data-question'));
+                    var value = parseInt(this.getAttribute('data-value'));
+                    selectOption(this, questionNum, value);
+                });
+            });
+            
+            document.getElementById('prevBtn').addEventListener('click', function() {
+                changeQuestion(-1);
+            });
+            
+            document.getElementById('nextBtn').addEventListener('click', function() {
+                if (currentQuestion === totalQuestions) {
+                    calculateResults();
+                } else {
+                    changeQuestion(1);
+                }
+            });
+            
+            document.getElementById('finalBtn').addEventListener('click', showThankYou);
+            
+            console.log('✅ All event listeners set up');
+        });
+        
+        function startAssessment() {
+            console.log('🚀 Starting stress test assessment...');
+            
+            var firstName = document.getElementById('firstName').value.trim();
+            var lastName = document.getElementById('lastName').value.trim();
+            var email = document.getElementById('email').value.trim();
+            var businessType = document.getElementById('businessType').value.trim();
+            
+            console.log('Form values:', {
+                firstName: firstName,
+                lastName: lastName, 
+                email: email,
+                businessType: businessType
+            });
+            
+            if (!firstName || !lastName || !email) {
+                alert('Please fill in all required fields (First Name, Last Name, and Email).');
+                return;
+            }
+            
+            // Basic email validation
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            leadData = {
+                first_name: firstName,
+                last_name: lastName,
+                email: email,
+                business_type: businessType || 'Not provided'
+            };
+            
+            console.log('✅ Data stored:', leadData);
+            
+            // Hide the form and start assessment
+            document.getElementById('leadCapture').style.display = 'none';
+            document.getElementById('assessmentQuestions').style.display = 'block';
+            updateProgress();
+            
+            console.log('🎯 Stress test assessment started successfully!');
+        }
         
         function updateProgress() {
             var progress = ((currentQuestion - 1) / totalQuestions) * 100;
@@ -511,12 +628,13 @@
         }
         
         function selectOption(element, questionNum, value) {
-            var options = element.parentElement.querySelectorAll('.option');
-            for (var i = 0; i < options.length; i++) {
-                options[i].classList.remove('selected');
-            }
+            var options = element.closest('.question').querySelectorAll('.option');
+            options.forEach(function(opt) {
+                opt.classList.remove('selected');
+            });
+            
             element.classList.add('selected');
-            answers[questionNum] = parseInt(value);
+            answers[questionNum] = value;
             document.getElementById('nextBtn').disabled = false;
         }
         
@@ -537,7 +655,6 @@
                 
                 if (currentQuestion === totalQuestions) {
                     document.getElementById('nextBtn').textContent = 'See Results';
-                    document.getElementById('nextBtn').onclick = function() { calculateResults(); };
                 }
                 
             } else if (direction === -1 && currentQuestion > 1) {
@@ -550,7 +667,6 @@
                 }
                 
                 document.getElementById('nextBtn').textContent = 'Next';
-                document.getElementById('nextBtn').onclick = function() { changeQuestion(1); };
             }
             
             document.getElementById('prevBtn').disabled = currentQuestion === 1;
@@ -562,7 +678,6 @@
             for (var key in answers) {
                 totalScore += answers[key];
             }
-            var maxScore = totalQuestions * 5;
             
             var resultTitle, resultDescription, scoreClass, stressLevel;
             var topStressors = [];
@@ -578,6 +693,7 @@
                 8: 'Burnout Risk'
             };
             
+            // Identify top stressors (scores of 4 or 5)
             for (var questionNum in answers) {
                 if (answers[questionNum] >= 4) {
                     topStressors.push(stressorNames[parseInt(questionNum)]);
@@ -588,92 +704,106 @@
             
             if (averageScore >= 4) {
                 resultTitle = "CRITICAL: High Stress Level Detected";
-                resultDescription = "You're experiencing dangerous levels of entrepreneurial stress. Consider seeking motivational support to help manage your business challenges.";
+                resultDescription = "You're experiencing dangerous levels of entrepreneurial stress. Our Daily Mind Boost emails can provide the motivational support you need to manage these challenges effectively.";
                 scoreClass = "score-high";
                 stressLevel = "CRITICAL";
             } else if (averageScore >= 3) {
                 resultTitle = "WARNING: Significant Stress Detected";
-                resultDescription = "You're under significant entrepreneurial stress. Daily Mind Boost emails could help you manage these challenges more effectively.";
+                resultDescription = "You're under significant entrepreneurial stress. Daily Mind Boost emails could help you manage these challenges more effectively and build resilience.";
                 scoreClass = "score-medium";
                 stressLevel = "HIGH";
             } else {
                 resultTitle = "GOOD: Managing Stress Well";
-                resultDescription = "You're managing entrepreneurial stress relatively well, but there's always room for improvement with daily motivational support.";
+                resultDescription = "You're managing entrepreneurial stress relatively well, but there's always room for improvement with daily motivational support to stay strong.";
                 scoreClass = "score-low";
                 stressLevel = "MODERATE";
             }
             
-            // Hide questions, show results
+            // Submit to Formspree
+            submitToFormspree(totalScore, stressLevel, topStressors);
+            
             document.querySelector('.content').style.display = 'none';
-            document.getElementById('results').classList.add('show');
+            document.getElementById('loading').style.display = 'block';
             
-            // Update results
-            document.getElementById('scoreText').textContent = totalScore + '/' + maxScore;
-            document.getElementById('scoreCircle').className = 'score-circle ' + scoreClass;
-            document.getElementById('resultTitle').textContent = resultTitle;
-            document.getElementById('resultDescription').textContent = resultDescription;
-            
-            // Display contact information
-            document.getElementById('contactInfoDisplay').style.display = 'block';
-            document.getElementById('displayName').textContent = (leadData.firstName + ' ' + leadData.lastName) || 'Not provided';
-            document.getElementById('displayEmail').textContent = leadData.email || 'Not provided';
-            document.getElementById('displayBusiness').textContent = leadData.businessType || 'Not provided';
-            document.getElementById('displayStressLevel').textContent = stressLevel;
-            document.getElementById('displayScore').textContent = totalScore + '/40 points';
-            document.getElementById('displayDate').textContent = new Date().toLocaleString();
-            document.getElementById('displayStressors').textContent = topStressors.length > 0 ? topStressors.join(', ') : 'None identified';
-            
-            // Save lead data for Lindy monitoring
-            saveLeadData(totalScore, stressLevel, topStressors);
-            
-            updateProgress();
-            document.getElementById('progressBar').style.width = '100%';
+            setTimeout(function() {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('results').classList.add('show');
+                
+                document.getElementById('scoreText').textContent = totalScore + '/40';
+                document.getElementById('scoreCircle').className = 'score-circle ' + scoreClass;
+                document.getElementById('resultTitle').textContent = resultTitle;
+                document.getElementById('resultDescription').textContent = resultDescription;
+                
+                document.getElementById('displayName').textContent = leadData.first_name + ' ' + leadData.last_name;
+                document.getElementById('displayEmail').textContent = leadData.email;
+                document.getElementById('displayBusiness').textContent = leadData.business_type;
+                document.getElementById('displayStressLevel').textContent = stressLevel;
+                document.getElementById('displayScore').textContent = totalScore + '/40 points';
+                document.getElementById('displayStressors').textContent = topStressors.length > 0 ? topStressors.join(', ') : 'None identified';
+            }, 2000);
         }
         
-        function saveLeadData(totalScore, stressLevel, topStressors) {
-            var now = new Date();
-            var timestamp = now.toLocaleDateString() + ' at ' + now.toLocaleTimeString();
+        function submitToFormspree(totalScore, stressLevel, topStressors) {
+            console.log('📤 Submitting to Formspree...');
             
-            var leadInfo = {
-                id: 'stress_lead_' + Date.now(),
-                timestamp: timestamp,
-                name: leadData.firstName + ' ' + leadData.lastName,
+            // Create answers summary
+            var answerText = '';
+            for (var i = 1; i <= 8; i++) {
+                if (answers[i] !== undefined) {
+                    answerText += 'Q' + i + ': ' + answers[i] + ' points; ';
+                }
+            }
+            
+            // Create form data for Formspree
+            var formData = new FormData();
+            formData.append('first-name', leadData.first_name);
+            formData.append('last-name', leadData.last_name);
+            formData.append('email', leadData.email);
+            formData.append('business-type', leadData.business_type);
+            formData.append('stress-level', stressLevel);
+            formData.append('score', totalScore + '/40');
+            formData.append('top-stressors', topStressors.join(', ') || 'None identified');
+            formData.append('detailed-answers', answerText);
+            formData.append('completed-date', new Date().toLocaleString());
+            formData.append('assessment-type', 'Entrepreneur Stress Test');
+            
+            // Submit to Formspree
+            fetch('https://formspree.io/f/mwpbjqad', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(function(response) {
+                if (response.ok) {
+                    console.log('✅ Successfully submitted to Formspree');
+                } else {
+                    console.log('⚠️ Formspree submission error');
+                }
+            }).catch(function(error) {
+                console.log('⚠️ Network error:', error);
+            });
+            
+            console.log('✅ Submitted with data:', {
+                name: leadData.first_name + ' ' + leadData.last_name,
                 email: leadData.email,
-                business_type: leadData.businessType || 'Not provided',
-                stress_level: stressLevel,
-                score: totalScore,
-                max_score: 40,
-                top_stressors: topStressors.join(', ') || 'None identified'
-            };
-            
-            // Log for debugging
-            console.log('New stress test lead data:', leadInfo);
-            
-            // Store in localStorage for demonstration
-            var existingLeads = JSON.parse(localStorage.getItem('stress_test_leads') || '[]');
-            existingLeads.push(leadInfo);
-            localStorage.setItem('stress_test_leads', JSON.stringify(existingLeads));
+                score: totalScore + '/40',
+                stressLevel: stressLevel
+            });
         }
         
-        function showCTA() {
-            alert('Thank you ' + leadData.firstName + ' ' + leadData.lastName + '!\n\nWe will begin sending our Daily Mind Boost email directly to your inbox.\n\nQuestions? Call us: 1-888-884-0368\nEmail: accounts@elitelocallistings.com');
-        }
-        
-        function startAssessment(event) {
-            event.preventDefault();
+        function showThankYou() {
+            var message = '🎯 STRESS TEST COMPLETE!\n\n' +
+                  leadData.first_name + ' ' + leadData.last_name + ', your results show ' + 
+                  document.getElementById('displayStressLevel').textContent + ' stress level.\n\n' +
+                  'Your Score: ' + document.getElementById('displayScore').textContent + '\n\n' +
+                  'We will begin sending Daily Mind Boost emails to ' + leadData.email + 
+                  ' to help you manage stress and stay motivated.\n\n' +
+                  'Questions? Call us: 1-888-884-0368\n' +
+                  'Email: accounts@elitelocallistings.com\n\n' +
+                  'Thank you for completing the assessment!';
             
-            leadData = {
-                firstName: document.getElementById('firstName').value,
-                lastName: document.getElementById('lastName').value,
-                email: document.getElementById('email').value,
-                businessType: document.getElementById('businessType').value || 'Not provided'
-            };
-            
-            document.getElementById('leadCapture').classList.add('hidden');
-            document.getElementById('assessmentQuestions').classList.remove('hidden');
-            updateProgress();
-            
-            return false;
+            alert(message);
         }
     </script>
 </body>
