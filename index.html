@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Local Listings - Entrepreneur Stress Test</title>
+    <title>Entrepreneur Stress Assessment</title>
     <style>
         * {
             margin: 0;
@@ -378,16 +378,30 @@
                 </p>
                 <div class="capture-form">
                     <div class="form-group">
-                        <input type="text" id="firstName" name="first_name" placeholder="First Name*" required class="form-control">
+                        <input type="text" id="firstName" placeholder="First Name*" required class="form-control">
                     </div>
                     <div class="form-group">
-                        <input type="text" id="lastName" name="last_name" placeholder="Last Name*" required class="form-control">
+                        <input type="text" id="lastName" placeholder="Last Name*" required class="form-control">
                     </div>
                     <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Email Address*" required class="form-control">
+                        <input type="text" id="practiceName" placeholder="Practice/Business Name*" required class="form-control">
                     </div>
                     <div class="form-group">
-                        <input type="text" id="businessType" name="business_type" placeholder="Business Type (Optional)" class="form-control">
+                        <input type="email" id="email" placeholder="Email Address*" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" placeholder="Phone Number*" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <select id="practiceType" required class="form-control">
+                            <option value="">Select Business Type*</option>
+                            <option value="Coaching/Consulting">Coaching/Consulting</option>
+                            <option value="E-commerce">E-commerce</option>
+                            <option value="Service Business">Service Business</option>
+                            <option value="Tech/Software">Tech/Software</option>
+                            <option value="Marketing Agency">Marketing Agency</option>
+                            <option value="Other Business">Other Business</option>
+                        </select>
                     </div>
                     <button type="button" class="btn btn-primary form-submit" id="startBtn">
                         💪 Start My FREE Stress Test →
@@ -407,11 +421,11 @@
                 <div class="question active" data-question="1">
                     <h3>How many hours per week do you work?</h3>
                     <div class="options">
-                        <div class="option" data-value="1">Under 40 hours (Part-time focus - 1 point)</div>
-                        <div class="option" data-value="2">40-50 hours (Balanced approach - 2 points)</div>
+                        <div class="option" data-value="1">Under 40 hours (Balanced - 1 point)</div>
+                        <div class="option" data-value="2">40-50 hours (Standard - 2 points)</div>
                         <div class="option" data-value="3">50-65 hours (High commitment - 3 points)</div>
-                        <div class="option" data-value="4">65-80 hours (Intense schedule - 4 points)</div>
-                        <div class="option" data-value="5">80+ hours (Always working - 5 points)</div>
+                        <div class="option" data-value="4">65-80 hours (Very high - 4 points)</div>
+                        <div class="option" data-value="5">80+ hours (Extreme - 5 points)</div>
                     </div>
                 </div>
                 
@@ -475,30 +489,6 @@
                     </div>
                 </div>
                 
-                <!-- Question 7 -->
-                <div class="question" data-question="7">
-                    <h3>How overwhelmed do you feel by technology demands?</h3>
-                    <div class="options">
-                        <div class="option" data-value="1">Not overwhelmed - Tech savvy (1 point)</div>
-                        <div class="option" data-value="2">Slightly overwhelmed - Minor struggles (2 points)</div>
-                        <div class="option" data-value="3">Moderately overwhelmed - Regular challenges (3 points)</div>
-                        <div class="option" data-value="4">Very overwhelmed - Major struggle (4 points)</div>
-                        <div class="option" data-value="5">Extremely overwhelmed - Completely lost (5 points)</div>
-                    </div>
-                </div>
-                
-                <!-- Question 8 -->
-                <div class="question" data-question="8">
-                    <h3>How close to burnout do you feel right now?</h3>
-                    <div class="options">
-                        <div class="option" data-value="1">Energized - Love what I do (1 point)</div>
-                        <div class="option" data-value="2">Tired but motivated (2 points)</div>
-                        <div class="option" data-value="3">Moderately drained (3 points)</div>
-                        <div class="option" data-value="4">Significantly burned out (4 points)</div>
-                        <div class="option" data-value="5">Completely exhausted (5 points)</div>
-                    </div>
-                </div>
-                
                 <div class="navigation">
                     <button class="btn btn-secondary" id="prevBtn" disabled>Previous</button>
                     <button class="btn btn-primary" id="nextBtn" disabled>Next</button>
@@ -522,11 +512,12 @@
             <div class="contact-info" id="contactInfo">
                 <h3>📋 Your Assessment Details:</h3>
                 <p><strong>Name:</strong> <span id="displayName"></span></p>
+                <p><strong>Practice:</strong> <span id="displayPractice"></span></p>
                 <p><strong>Email:</strong> <span id="displayEmail"></span></p>
-                <p><strong>Business Type:</strong> <span id="displayBusiness"></span></p>
-                <p><strong>Stress Level:</strong> <span id="displayStressLevel"></span></p>
+                <p><strong>Phone:</strong> <span id="displayPhone"></span></p>
+                <p><strong>Type:</strong> <span id="displayType"></span></p>
                 <p><strong>Score:</strong> <span id="displayScore"></span></p>
-                <p><strong>Top Stressors:</strong> <span id="displayStressors"></span></p>
+                <p><strong>Priority:</strong> <span id="displayPriority"></span></p>
             </div>
             
             <button class="cta" id="finalBtn">📧 Start My Daily Mind Boost Emails (FREE)</button>
@@ -542,7 +533,7 @@
         
         // Global variables
         var currentQuestion = 1;
-        var totalQuestions = 8;
+        var totalQuestions = 6;
         var answers = {};
         var leadData = {};
         
@@ -579,37 +570,27 @@
         });
         
         function startAssessment() {
-            console.log('🚀 Starting stress test assessment...');
+            console.log('🚀 Starting stress assessment...');
             
             var firstName = document.getElementById('firstName').value.trim();
             var lastName = document.getElementById('lastName').value.trim();
+            var practiceName = document.getElementById('practiceName').value.trim();
             var email = document.getElementById('email').value.trim();
-            var businessType = document.getElementById('businessType').value.trim();
+            var phone = document.getElementById('phone').value.trim();
+            var practiceType = document.getElementById('practiceType').value;
             
-            console.log('Form values:', {
-                firstName: firstName,
-                lastName: lastName, 
-                email: email,
-                businessType: businessType
-            });
-            
-            if (!firstName || !lastName || !email) {
-                alert('Please fill in all required fields (First Name, Last Name, and Email).');
-                return;
-            }
-            
-            // Basic email validation
-            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address.');
+            if (!firstName || !lastName || !practiceName || !email || !phone || !practiceType) {
+                alert('Please fill in all required fields.');
                 return;
             }
             
             leadData = {
                 first_name: firstName,
                 last_name: lastName,
+                practice_name: practiceName,
                 email: email,
-                business_type: businessType || 'Not provided'
+                phone: phone,
+                practice_type: practiceType
             };
             
             console.log('✅ Data stored:', leadData);
@@ -619,7 +600,7 @@
             document.getElementById('assessmentQuestions').style.display = 'block';
             updateProgress();
             
-            console.log('🎯 Stress test assessment started successfully!');
+            console.log('🎯 Assessment started successfully!');
         }
         
         function updateProgress() {
@@ -679,48 +660,27 @@
                 totalScore += answers[key];
             }
             
-            var resultTitle, resultDescription, scoreClass, stressLevel;
-            var topStressors = [];
+            var resultTitle, resultDescription, scoreClass, priorityLevel;
             
-            var stressorNames = {
-                1: 'Work-Life Balance',
-                2: 'Sleep & Wellbeing', 
-                3: 'Cash Flow Anxiety',
-                4: 'People Management',
-                5: 'Lead Generation',
-                6: 'Access to Capital',
-                7: 'Technology Overwhelm',
-                8: 'Burnout Risk'
-            };
-            
-            // Identify top stressors (scores of 4 or 5)
-            for (var questionNum in answers) {
-                if (answers[questionNum] >= 4) {
-                    topStressors.push(stressorNames[parseInt(questionNum)]);
-                }
-            }
-            
-            var averageScore = totalScore / totalQuestions;
-            
-            if (averageScore >= 4) {
+            if (totalScore >= 20) {
                 resultTitle = "CRITICAL: High Stress Level Detected";
                 resultDescription = "You're experiencing dangerous levels of entrepreneurial stress. Our Daily Mind Boost emails can provide the motivational support you need to manage these challenges effectively.";
                 scoreClass = "score-high";
-                stressLevel = "CRITICAL";
-            } else if (averageScore >= 3) {
+                priorityLevel = "HIGH PRIORITY";
+            } else if (totalScore >= 12) {
                 resultTitle = "WARNING: Significant Stress Detected";
                 resultDescription = "You're under significant entrepreneurial stress. Daily Mind Boost emails could help you manage these challenges more effectively and build resilience.";
                 scoreClass = "score-medium";
-                stressLevel = "HIGH";
+                priorityLevel = "MEDIUM PRIORITY";
             } else {
                 resultTitle = "GOOD: Managing Stress Well";
                 resultDescription = "You're managing entrepreneurial stress relatively well, but there's always room for improvement with daily motivational support to stay strong.";
                 scoreClass = "score-low";
-                stressLevel = "MODERATE";
+                priorityLevel = "LOW PRIORITY";
             }
             
-            // Submit to Formspree
-            submitToFormspree(totalScore, stressLevel, topStressors);
+            // Submit to Formspree using EXACT same format as working form
+            submitToFormspree(totalScore, priorityLevel);
             
             document.querySelector('.content').style.display = 'none';
             document.getElementById('loading').style.display = 'block';
@@ -729,54 +689,44 @@
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('results').classList.add('show');
                 
-                document.getElementById('scoreText').textContent = totalScore + '/40';
+                document.getElementById('scoreText').textContent = totalScore + '/30';
                 document.getElementById('scoreCircle').className = 'score-circle ' + scoreClass;
                 document.getElementById('resultTitle').textContent = resultTitle;
                 document.getElementById('resultDescription').textContent = resultDescription;
                 
                 document.getElementById('displayName').textContent = leadData.first_name + ' ' + leadData.last_name;
+                document.getElementById('displayPractice').textContent = leadData.practice_name;
                 document.getElementById('displayEmail').textContent = leadData.email;
-                document.getElementById('displayBusiness').textContent = leadData.business_type;
-                document.getElementById('displayStressLevel').textContent = stressLevel;
-                document.getElementById('displayScore').textContent = totalScore + '/40 points';
-                document.getElementById('displayStressors').textContent = topStressors.length > 0 ? topStressors.join(', ') : 'None identified';
+                document.getElementById('displayPhone').textContent = leadData.phone;
+                document.getElementById('displayType').textContent = leadData.practice_type;
+                document.getElementById('displayScore').textContent = totalScore + '/30 points';
+                document.getElementById('displayPriority').textContent = priorityLevel;
             }, 2000);
         }
         
-        function submitToFormspree(totalScore, stressLevel, topStressors) {
+        function submitToFormspree(totalScore, priorityLevel) {
             console.log('📤 Submitting to Formspree...');
             
             // Create answers summary
             var answerText = '';
-            for (var i = 1; i <= 8; i++) {
+            for (var i = 1; i <= 6; i++) {
                 if (answers[i] !== undefined) {
                     answerText += 'Q' + i + ': ' + answers[i] + ' points; ';
                 }
             }
             
-            // Create form data for Formspree
+            // Create form data EXACTLY like working form
             var formData = new FormData();
             formData.append('first-name', leadData.first_name);
             formData.append('last-name', leadData.last_name);
-            formData.append('practice-name', leadData.business_type);
+            formData.append('practice-name', leadData.practice_name);
             formData.append('email', leadData.email);
-            formData.append('phone', 'Not provided');
-            formData.append('practice-type', 'Entrepreneur Stress Test');
-            formData.append('score', totalScore + '/40');
-            formData.append('priority-level', stressLevel);
+            formData.append('phone', leadData.phone);
+            formData.append('practice-type', leadData.practice_type);
+            formData.append('score', totalScore + '/30');
+            formData.append('priority-level', priorityLevel);
             formData.append('detailed-answers', answerText);
             formData.append('completed-date', new Date().toLocaleString());
-            
-            // Log what we're sending
-            console.log('📋 Form data being sent:', {
-                first_name: leadData.first_name,
-                last_name: leadData.last_name,
-                email: leadData.email,
-                business_type: leadData.business_type,
-                stress_level: stressLevel,
-                score: totalScore + '/40',
-                top_stressors: topStressors.join(', ') || 'None identified'
-            });
             
             // Submit to Formspree
             fetch('https://formspree.io/f/mwpbjoqd', {
@@ -786,28 +736,27 @@
                     'Accept': 'application/json'
                 }
             }).then(function(response) {
-                console.log('📨 Formspree response status:', response.status);
                 if (response.ok) {
                     console.log('✅ Successfully submitted to Formspree');
-                    return response.json();
                 } else {
-                    console.log('⚠️ Formspree submission error:', response.status);
-                    return response.text().then(text => {
-                        console.log('Error details:', text);
-                        throw new Error('Formspree error: ' + response.status);
-                    });
+                    console.log('⚠️ Formspree submission error');
                 }
-            }).then(function(data) {
-                console.log('✅ Formspree success response:', data);
             }).catch(function(error) {
-                console.log('❌ Network or submission error:', error);
+                console.log('⚠️ Network error:', error);
+            });
+            
+            console.log('✅ Submitted with data:', {
+                name: leadData.first_name + ' ' + leadData.last_name,
+                email: leadData.email,
+                score: totalScore + '/30',
+                priority: priorityLevel
             });
         }
         
         function showThankYou() {
             var message = '🎯 STRESS TEST COMPLETE!\n\n' +
                   leadData.first_name + ' ' + leadData.last_name + ', your results show ' + 
-                  document.getElementById('displayStressLevel').textContent + ' stress level.\n\n' +
+                  document.getElementById('displayPriority').textContent + ' for stress management.\n\n' +
                   'Your Score: ' + document.getElementById('displayScore').textContent + '\n\n' +
                   'We will begin sending Daily Mind Boost emails to ' + leadData.email + 
                   ' to help you manage stress and stay motivated.\n\n' +
