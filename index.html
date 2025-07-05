@@ -378,16 +378,16 @@
                 </p>
                 <div class="capture-form">
                     <div class="form-group">
-                        <input type="text" id="firstName" placeholder="First Name*" required class="form-control">
+                        <input type="text" id="firstName" name="first_name" placeholder="First Name*" required class="form-control">
                     </div>
                     <div class="form-group">
-                        <input type="text" id="lastName" placeholder="Last Name*" required class="form-control">
+                        <input type="text" id="lastName" name="last_name" placeholder="Last Name*" required class="form-control">
                     </div>
                     <div class="form-group">
-                        <input type="email" id="email" placeholder="Email Address*" required class="form-control">
+                        <input type="email" id="email" name="email" placeholder="Email Address*" required class="form-control">
                     </div>
                     <div class="form-group">
-                        <input type="text" id="businessType" placeholder="Business Type (Optional)" class="form-control">
+                        <input type="text" id="businessType" name="business_type" placeholder="Business Type (Optional)" class="form-control">
                     </div>
                     <button type="button" class="btn btn-primary form-submit" id="startBtn">
                         💪 Start My FREE Stress Test →
@@ -756,16 +756,27 @@
             
             // Create form data for Formspree
             var formData = new FormData();
-            formData.append('first-name', leadData.first_name);
-            formData.append('last-name', leadData.last_name);
+            formData.append('first_name', leadData.first_name);
+            formData.append('last_name', leadData.last_name);
             formData.append('email', leadData.email);
-            formData.append('business-type', leadData.business_type);
-            formData.append('stress-level', stressLevel);
+            formData.append('business_type', leadData.business_type);
+            formData.append('stress_level', stressLevel);
             formData.append('score', totalScore + '/40');
-            formData.append('top-stressors', topStressors.join(', ') || 'None identified');
-            formData.append('detailed-answers', answerText);
-            formData.append('completed-date', new Date().toLocaleString());
-            formData.append('assessment-type', 'Entrepreneur Stress Test');
+            formData.append('top_stressors', topStressors.join(', ') || 'None identified');
+            formData.append('detailed_answers', answerText);
+            formData.append('completed_date', new Date().toLocaleString());
+            formData.append('assessment_type', 'Entrepreneur Stress Test');
+            
+            // Log what we're sending
+            console.log('📋 Form data being sent:', {
+                first_name: leadData.first_name,
+                last_name: leadData.last_name,
+                email: leadData.email,
+                business_type: leadData.business_type,
+                stress_level: stressLevel,
+                score: totalScore + '/40',
+                top_stressors: topStressors.join(', ') || 'None identified'
+            });
             
             // Submit to Formspree
             fetch('https://formspree.io/f/mwpbjqad', {
@@ -775,20 +786,21 @@
                     'Accept': 'application/json'
                 }
             }).then(function(response) {
+                console.log('📨 Formspree response status:', response.status);
                 if (response.ok) {
                     console.log('✅ Successfully submitted to Formspree');
+                    return response.json();
                 } else {
-                    console.log('⚠️ Formspree submission error');
+                    console.log('⚠️ Formspree submission error:', response.status);
+                    return response.text().then(text => {
+                        console.log('Error details:', text);
+                        throw new Error('Formspree error: ' + response.status);
+                    });
                 }
+            }).then(function(data) {
+                console.log('✅ Formspree success response:', data);
             }).catch(function(error) {
-                console.log('⚠️ Network error:', error);
-            });
-            
-            console.log('✅ Submitted with data:', {
-                name: leadData.first_name + ' ' + leadData.last_name,
-                email: leadData.email,
-                score: totalScore + '/40',
-                stressLevel: stressLevel
+                console.log('❌ Network or submission error:', error);
             });
         }
         
